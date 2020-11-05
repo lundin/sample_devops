@@ -22,7 +22,6 @@ steps:
 - task: Go@0
   inputs:
     command: 'test'
-    arguments: 'main_test.go'
 - task: Go@0
   inputs:
     workingDirectory: '.'
