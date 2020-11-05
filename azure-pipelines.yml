@@ -1,0 +1,37 @@
+# Starter pipeline
+
+trigger:
+- master
+
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: GoTool@0
+  inputs:
+    version: '1.13.5'
+- task: Go@0
+  inputs:
+    command: 'get'
+    arguments: '-d'
+    workingDirectory: '.'
+- task: Go@0
+  inputs:
+    command: 'test'
+    arguments: 'main_test.go'
+- task: Go@0
+  inputs:
+    workingDirectory: '.'
+    command: 'custom'
+    customCommand: 'run'
+    arguments: 'main.go'
+
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
